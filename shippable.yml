@@ -1,0 +1,23 @@
+# Language setting
+language: node_js
+
+# Version number
+node_js:
+  - 0.10.25
+
+# The path for Xunit to output test reports
+env:
+  - XUNIT_FILE=shippable/testresults/result.xml
+
+# Create directories for test and coverage reports
+before_script:
+  - git clone https://github.com/meteor/meteor.git ~/meteor
+  - export PATH=~/meteor/:$PATH
+
+# Running the tests with grunt
+script:
+  - METEOR_PATH=~/meteor laika -t 5000
+
+# Tell istanbul to generate a coverage report
+after_script:
+  
